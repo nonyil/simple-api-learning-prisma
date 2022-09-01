@@ -1,6 +1,6 @@
+import 'express-async-errors';
 import { CustomError } from './Errors/CustomError';
 import { NextFunction, Request, response, Response } from 'express';
-import 'express-async-errors';
 import { routes } from './routes/index';
 import express from 'express';
 

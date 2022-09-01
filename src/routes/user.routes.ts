@@ -3,6 +3,7 @@ import { Router } from "express";
 
 const createUserController = new CreateUserController();
 
+
 export const userRoutes = Router();
 
 userRoutes.post('/', createUserController.handle);
