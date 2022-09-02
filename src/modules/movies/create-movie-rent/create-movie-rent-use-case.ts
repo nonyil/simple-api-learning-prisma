@@ -6,33 +6,35 @@ import { CreateMovieRentDTO } from './../dtos/movie-rent';
 
 export class CreateMovieRentUseCase {
   async execute({movieId, userId}: CreateMovieRentDTO): Promise<void> {
-    const movieExist = await prisma.movie.findUnique({
+    const movieExists = await prisma.movie.findUnique({
       where: {
         id: movieId
       }
     });
 
-    if (!movieExist) {
+    if (!movieExists) {
       throw new CustomError('Movie not found', 404);
     }
 
-    const movieRent = await prisma.movieRent.findFirst({
+    const movieRentedOn = await prisma.movieRent.findFirst({
       where: {
         movieId,
       }
     });
 
-    if (movieRent) {
+
+    if (movieRentedOn) {
       throw new CustomError('Movie already rented', 400);
     }
 
-    const userExist = await prisma.user.findUnique({
+    const userExists = await prisma.user.findUnique({
       where: {
         id: userId
       }
     });
+    
 
-    if (!userExist) {
+    if (!userExists) {
       throw new CustomError('User not found', 404);
     }
 

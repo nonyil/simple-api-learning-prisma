@@ -17,7 +17,6 @@ export class CreateMovieUseCase {
       throw new CustomError('Movie already exists', 400);
     }
 
-    console.log(title, duration, release_date);
     const movie = await prisma.movie.create({
       data: {
         title,

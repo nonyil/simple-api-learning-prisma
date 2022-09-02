@@ -16,7 +16,7 @@ model User {
   name        String 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  movie_rent  MovieRent[] @relation("user")
+  movie_rents  MovieRent[] @relation("user")
   @@map("users")
 }
 
@@ -25,7 +25,7 @@ model Movie {
   title       String @unique
   duration    Int
   release_date DateTime
-  movie_rent  MovieRent[] @relation("movie")
+  movie_rents  MovieRent[] @relation("movie")
 
   @@map("movies")
 }
@@ -37,5 +37,5 @@ model MovieRent {
   movieId   String
 
   @@id([userId, movieId])
-  @@map("movie_rent")
+  @@map("movie_rents")
 }
